@@ -18,7 +18,7 @@ const server = http.createServer((req , res) =>
         path = "/index.html";
     }
 
-    let mime_type = lookup(path.substring(1));
+    let mime_type = lookup(path.substring(1)) as string;
 
     fs.readFile(__dirname + path, function (err, data) {
 

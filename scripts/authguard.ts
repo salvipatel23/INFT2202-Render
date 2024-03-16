@@ -6,7 +6,7 @@
 
     if(protected_routes.indexOf(router.ActiveLink) > -1){
     if(!sessionStorage.getItem("user")) {
-        router.ActiveLink= "login";
+        location.href = "/login";
     }
     }
 
