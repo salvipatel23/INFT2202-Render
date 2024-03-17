@@ -29,19 +29,17 @@ var core;
             this._emailAddress = value;
         }
         toString() {
-            return `FullName ${this._fullName}\n
-        ContactNumber ${this._contactNumber}\n
-        EmailAddress ${this._emailAddress}`;
+            return `Full Name ${this._fullName} \n Contact Number ${this._contactNumber} \n Email Address ${this._emailAddress}`;
         }
         serialize() {
             if (this._fullName !== "" && this._contactNumber !== "" && this._emailAddress !== "") {
                 return `${this._fullName}, ${this._contactNumber}, ${this._emailAddress}`;
             }
-            console.error("One or more of the contact properties are missing or invalid");
+            console.error("One or more of the contact properties is missing");
             return null;
         }
-        deserialize(data) {
-            let propertyArray = data.split(",");
+        deserialize(localStorageData) {
+            let propertyArray = localStorageData.split(",");
             this._fullName = propertyArray[0];
             this._contactNumber = propertyArray[1];
             this._emailAddress = propertyArray[2];
@@ -49,4 +47,3 @@ var core;
     }
     core.Contact = Contact;
 })(core || (core = {}));
-//# sourceMappingURL=contact.js.map

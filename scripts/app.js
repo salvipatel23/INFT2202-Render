@@ -45,7 +45,7 @@
         let protected_routes = ["contact-list"];
         if (protected_routes.indexOf(router.ActiveLink) > -1) {
             if (!sessionStorage.getItem("user")) {
-                location.href = "/login";
+                LoadLink("login");
             }
         }
     }
@@ -59,6 +59,7 @@
             $("#login").html(`<a class="nav-link" data="login"><i class="fa fa-sign-in-alt"></i> Login</a>`);
             AddNavigationEvents();
             LoadLink("login");
+            AddNavigationEvents();
         });
     }
     function ContactFormValidation() {

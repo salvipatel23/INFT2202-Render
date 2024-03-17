@@ -10,7 +10,7 @@ let lookup = mime_types_1.default.lookup;
 const port = process.env.PORT || 3000;
 const server = http_1.default.createServer((req, res) => {
     let path = req.url;
-    if (path === "/" || path === "/home") {
+    if (path === '/' || path === "/home") {
         path = "/index.html";
     }
     let mime_type = lookup(path.substring(1));
@@ -24,11 +24,10 @@ const server = http_1.default.createServer((req, res) => {
             mime_type = "text/plain";
         }
         res.setHeader("X-Content-Type-Options", "nosniff");
-        res.writeHead(200, { 'Content-Type': mime_type });
+        res.writeHead(200, "OK", { 'Content-Type': mime_type });
         res.end(data);
     });
 });
 server.listen((port), () => {
     console.log(`Server Running at http:/localhost:${port}/`);
 });
-//# sourceMappingURL=server.js.map

@@ -1,47 +1,63 @@
-    <div class="row">
-        <div class="offset-md-3 col-md-6 col-sm-12">
-            <div class="login" id="contentArea">
-                <h1 class="display-4">Login</h1>
+<!--
+Name: Salvi Patel
+course code: INFT2202-13964
+IN Class Exercise - 3
+Date: March 16, 2024
+-->
 
-                <div id="messageArea"></div>
+<div class="row">
+    <div class="offset-md-3 col-md-6 col-sm-12">
 
-                <form id="loginForm" novalidate>
+        <div class="login" id="contentArea">
 
-                    <div class="form-group mb-2">
-                        <div class="input-group">
+            <h1 class="display-4">Login</h1>
+
+            <div id="messageArea">
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <div class="input-group">
                           <span class="input-group-addon">
                             <i class="fa fa-user">
                             </i>
                           </span>
-                            <input type="text" class="form-control" id="username" name="username"  required
-                                   value="" placeholder="Enter your username">
-                        </div>
-
+                        <input type="text" class="form-control" id="username" name="username"  required
+                               placeholder="Enter your username">
                     </div>
 
-                    <div class="form-group mb-2">
-                        <div class="input-group">
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
                           <span class="input-group-addon">
                             <i class="fa fa-lock">
                             </i>
                           </span>
-                            <input type="password" class="form-control" id="password" name="password"  required
-                                   value="" placeholder="Enter your password">
-                        </div>
 
+                        <!-- Password Field -->
+                        <input type="password" class="form-control" id="password" name="password"  required
+                               placeholder="Enter your password">
                     </div>
-                    <div class="text-end">
-                        <button id="loginButton" type="button" class="btn btn-primary btn-sm">
-                            <i class="fas fa-sign-in-alt">Login</i></button>
-                        <button id="cancelButton" type="button" class="btn btn-warning btn-sm">
-                            <i class="fas fa-undo">Cancel</i></button>
-                    </div>
-                </form>
+                </div>
+                <div class="text-end">
 
-            </div>
-            <p class="text-center text-muted small">
-                Don't have an account?
-                <a data="/register">Register Here!</a>
-            </p>
+                    <!-- Login and cancel button functions -->
+                    <button id="loginButton" type="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt">Login</i></button>
+                    <button id="cancelButton" type="submit" class="btn btn-warning btn-lg"><i class="fas fa-undo">Cancel</i></button>
+                </div>
+            </form>
+
         </div>
+        <!-- Register Link Option  -->
+        <p class="text-center text-muted small">
+            Don't have an account?
+            <a data="/register">Register Here!</a>
+        </p>
     </div>
+</div>
+
+
+

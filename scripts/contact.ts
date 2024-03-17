@@ -1,71 +1,100 @@
+/*
+Name: Salvi Patel
+course code: INFT2202-13964
+IN Class Exercise - 3
+Date: March 16, 2024
+*/
+
 "use strict";
 
-namespace core {
+namespace core
+{
+    export class Contact
+    {
 
-    export class Contact {
-
+        /**
+         * Defining the instance variables
+         */
         private _fullName:string;
-        private _contactNumber:string;
-        private _emailAddress:string;
+        private _contactNumber: string;
+        private _emailAddress : string;
 
-        constructor(fullName = "", contactNumber = "", emailAddress = "") {
+
+        /**
+         * Constructor method
+         * @param fullName
+         * @param contactNumber
+         * @param emailAddress
+         */
+        constructor(fullName = "", contactNumber = "", emailAddress = "")
+        {
+            /*
+             Initializing  the value of variables
+             */
             this._fullName = fullName;
             this._contactNumber = contactNumber;
             this._emailAddress = emailAddress;
         }
 
-        public get fullName():string {
+        /**
+         * Getter and Setter methods
+         */
+
+        public get fullName(): string
+        {
             return this._fullName;
         }
 
-        public set fullName(value:string) {
+        public set fullName( value: string)
+        {
             this._fullName = value;
         }
 
-        public get contactNumber():string {
+        public get contactNumber(): string
+        {
             return this._contactNumber;
         }
 
-        public set contactNumber(value:string) {
+        public set contactNumber(value: string)
+        {
             this._contactNumber = value;
         }
 
-        public get emailAddress():string {
+        public get emailAddress(): string
+        {
             return this._emailAddress;
         }
 
-        public set emailAddress(value:string) {
+        public set emailAddress(value: string) {
             this._emailAddress = value;
         }
 
-        public toString(): string {
-            return `FullName ${this._fullName}\n
-        ContactNumber ${this._contactNumber}\n
-        EmailAddress ${this._emailAddress}`;
+        public  toString() : string
+        {
+            return `Full Name ${this._fullName} \n Contact Number ${this._contactNumber} \n Email Address ${this._emailAddress}`;
         }
 
         /**
-         * serialize for writing local storage
+         * This method write the record to the local storage
          */
-        public serialize():string|null {
+        serialize(): string | null {
             if (this._fullName !== "" && this._contactNumber !== "" && this._emailAddress !== "") {
                 return `${this._fullName}, ${this._contactNumber}, ${this._emailAddress}`;
             }
-            console.error("One or more of the contact properties are missing or invalid");
+            console.error("One or more of the contact properties is missing");
             return null;
         }
 
         /**
-         * Deserialize means to read data from local storage
+         * Reading a record from localStorage
          */
-        public deserialize(data:string) {
-            let propertyArray = data.split(",");
+        public deserialize(localStorageData: string)
+        {
+            let propertyArray = localStorageData.split(",");
+            // Setting the value of the object properties
             this._fullName = propertyArray[0];
             this._contactNumber = propertyArray[1];
             this._emailAddress = propertyArray[2];
         }
     }
-
-
 }
-
