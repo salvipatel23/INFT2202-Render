@@ -1,0 +1,50 @@
+<!--
+* Name: Salvi Patel
+* Course Code - INFT 2202-02
+* In Class-4 : Mongoose and MongoDB Atlas
+* Date: April 17, 2024
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Salvi Patel">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="/content/app.css">
+
+    <script src="/scripts/namespace.js"></script>
+    <script src="/scripts/router.js"></script>
+    <script src="/scripts/contact.js"></script>
+    <script src="/scripts/user.js"></script>
+
+</head>
+<body id="<%= page %>">
+
+    <header>
+        <%- include('./components/header') %>
+    </header>
+
+    <main class="container">
+        <%- include('./content/' + page) %>
+    </main>
+
+    <footer>
+        <%- include('./components/footer') %>
+    </footer>
+
+<!-- Scripting Section -->
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--    When the requested content is loaded then this file will start providing the functionality to that specific-->
+<script src="/scripts/app.js"></script>
+</body>
+</html>

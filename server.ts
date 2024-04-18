@@ -1,90 +1,94 @@
+#!/usr/bin/env node
+
 /*
-Name: Salvi Patel
-course code: INFT2202-13964
-IN Class Exercise - 3
-Date: March 16, 2024
-*/
-
-
-"use strict";
-/**
- * Using the Import statement (ES Module)
+ * Name- Salvi Patel
+ * Course Code- INFT 2202-02
+ * In Class 4
+ * Date: April 17, 2024
  */
-import  http from "http";
-import fs from 'fs';
-import mime from "mime-types";
 
 /**
- * Storing the mime lookup function
+ * Importing Module dependencies.
  */
-let lookup  = mime.lookup;
 
-// Defining the PORT
-const port = process.env.PORT || 3000;
+import app from './server/config/app';
+import debug from 'debug';
+import http from 'http';
+import {HttpError} from "http-errors";
+
+
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
 /**
- * Creating the instance of HTTP Server
+ * Create HTTP server.
  */
-const server = http.createServer((req , res) =>
-{
-    /**
-     * Extracting the url
-     */
-    let path  = req.url as string;
 
-    /**
-     * Checking whether the page it is home or not
-     */
-    if (path === '/' || path === "/home")
-    {
-
-        path = "/index.html";
-    }
-
-    /**
-     * Getting the mime type of content inside the file
-     */
-    let mime_type = lookup(path.substring(1));
+const server = http.createServer(app);
 
 
-    fs.readFile(__dirname + path, function (err, data)
-    {
 
-        /**
-         * If function - Unable to read the file
-         */
-        if(err)
-        {
-            /**
-             *  status Code 404 Not Found
-             */
-            res.writeHead(404);
-
-            res.end("Error 404 - File Not Found" + err.message);
-            return;
-        }
-        if(!mime_type)
-        {
-            mime_type = "text/plain";
-        }
-
-        // Set Content Security headers and Response.
-        res.setHeader("X-Content-Type-Options", "nosniff");
-
-
-        res.writeHead(200, "OK",{'Content-Type': mime_type});
-
-        /**
-         *  end the response with some data
-         */
-        res.end(data);
-    });
-});
-
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
- * Starting the HTTP Server
+ * Normalize a port into a number or string
  */
-server.listen((port) , () => {
-    console.log(`Server Running at http:/localhost:${port}/`);
-});
+
+function normalizePort(val : string) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error : HttpError) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  let addr = server.address();
+  let bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr;
+  debug('Listening on ' + bind);
+}
